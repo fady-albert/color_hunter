@@ -183,8 +183,16 @@ body.dark .start h1, body.dark .start p{
     border: none;
     outline: none;
     color: var(--black);
-    transition: all 1s linear;
+    transition: all 1s linear, scale 0.5s ease;
     cursor: pointer;
+}
+
+.start button:hover{
+    scale: 1.05;
+}
+
+.start button:active{
+    scale: 0.95;
 }
 
 body.dark .start button{
