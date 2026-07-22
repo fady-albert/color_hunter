@@ -4,6 +4,12 @@ const modeBtn = document.getElementById('mode');
 const modeBtnTxt = document.getElementById('modeTxt');
 const container = document.getElementById('main-con');
 const counter = document.getElementById('counter');
+const countCon = document.getElementById('countCon');
+const startBtn = document.getElementById('start');
+const text =  document.getElementById('text');
+const high = document.getElementById('highScore');
+const score = document.getElementById('score');
+const btn = document.getElementById('btn');
 
 // DEFINE JS VARIABLES
 let mode = localStorage.getItem('mode') || '';
@@ -12,6 +18,11 @@ let diff = 23;
 let max = 500;
 let count = 0;
 let newLevel = 15;
+let highcore = localStorage.getItem('high') || 0;
+
+// IMPORT SOUNDS
+const clickSound = new Audio('./sounds/click.mp3');
+const endSound = new Audio('./sounds/end.mp3');
 
 // CHANGE MODE BETWEEN LIGHT AND DARK
 function darkMode() {
@@ -71,10 +82,12 @@ function addColor() {
     con.forEach(box => {
         box.style.background = `rgb(${color})`;
 
+        box.addEventListener('click', sound(clickSound));
+
         // THE WRONG SQUARE FUNCTION
         if(box !== winSquare) {
             box.addEventListener('click', () => {
-                container.innerHTML = ''
+                lose()
             })
         }
     });
@@ -91,6 +104,9 @@ function addColor() {
         // REPLACE THE SQUARES and create new color
         addSquares()
         addColor()
+
+        // UPDATE HIGHSCORE
+        getHighScore()
     })
 
     if(size < 20) {
@@ -115,7 +131,47 @@ function levels() {
     newLevel = newLevel + 15;
 }
 
-// RUN THER MAIN FUNCTIONS
-addSquares()
-addColor()
-countTrue()
+function start() {
+    startBtn.classList.add('hide');
+    countCon.classList.add('show');
+    // RUN THE MAIN FUNCTIONS
+    addSquares()
+    addColor()
+    countTrue()
+}
+
+function getHighScore() {
+    if(highcore < count) {
+        highcore = count;
+        localStorage.setItem('high', count)
+    }
+
+    const msg = 'highcore: ' + highcore;
+
+    return msg;
+}
+
+// SHOW HIGH SCORE
+high.textContent = getHighScore();
+
+// LOSE FUNCTION
+function lose() {
+    container.innerHTML = '';
+    startBtn.classList.remove('hide');
+    countCon.classList.remove('show');
+    text.textContent = 'game over';
+    score.textContent = 'score: ' + count;
+    btn.textContent = 'play again';
+
+    count = 0;
+    size = 2;
+    diff = 23;
+
+    high.textContent = getHighScore()
+    sound(endSound)
+}
+
+function sound(e) {
+    e.currentTime = 0;
+    e.play()
+}

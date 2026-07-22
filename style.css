@@ -80,6 +80,9 @@ button#mode:active{
 
 .data .square{
     border-radius: 5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
 }
 
 /* COUNTER */
@@ -92,10 +95,17 @@ button#mode:active{
     background: var(--black);
     border-radius: 10px;
     box-shadow: 0px 0px 5px var(--black);
-    transition: all 1s linear;
+    transition: all 1s linear, opacity 0.5s ease;
     display: flex;
     align-items: center;
     justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.counter.show{
+    opacity: 1;
+    transition: all 1s linear, opacity 2s ease 1s;
 }
 
 body.dark .counter{
@@ -114,4 +124,70 @@ body.dark .counter{
 
 body.dark .counter p{
     color: var(--black);
+}
+
+/* DISPLAY */
+.start{
+    width: calc(100% - 100px);
+    height: calc(100% - 100px);
+    border-radius: 100px;
+    corner-shape: squircle;
+    background: var(--black);
+    position: absolute;
+    transition: all 1s linear, opacity 1s ease 0.5s;
+    box-shadow: 0px 0px 10px var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+body.dark .start{
+    background: var(--white);
+    box-shadow: 0px 0px 10px var(--white);
+}
+
+.start.hide{
+    opacity: 0;
+    pointer-events: none;
+    transition: all 1s linear, opacity 1.5s ease;
+}
+
+.start h1, .start p{
+    font-size: 50px;
+    font-family: 'Courier New', Courier, monospace;
+    text-transform: uppercase;
+    color: var(--white);
+    transition: all 1s linear;
+}
+
+.start p{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+body.dark .start h1, body.dark .start p{
+    color: var(--black);
+}
+
+.start button{
+    height: 50px;
+    min-width: 200px;
+    font-size: 25px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    padding: 5px 15px;
+    text-transform: uppercase;
+    border-radius: 10px;
+    background: var(--white);
+    border: none;
+    outline: none;
+    color: var(--black);
+    transition: all 1s linear;
+    cursor: pointer;
+}
+
+body.dark .start button{
+    background: var(--black);
+    color: var(--white);
 }
