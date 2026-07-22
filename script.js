@@ -2,9 +2,11 @@
 const body = document.querySelector('body');
 const modeBtn = document.getElementById('mode');
 const modeBtnTxt = document.getElementById('modeTxt');
+const container = document.getElementById('main-con');
 
 // DEFINE JS VARIABLES
 let mode = localStorage.getItem('mode') || '';
+let size = 3;
 
 // CHANGE MODE BETWEEN LIGHT AND DARK
 function darkMode() {
@@ -17,10 +19,20 @@ function darkMode() {
 
 modeBtn.addEventListener('click', () => {
     darkMode()
-    
+
     localStorage.setItem('mode', mode === 'dark' ? 'light' : 'dark');
 })
 
 if(mode === 'dark') {
     darkMode()
 }
+
+// ADD HTML SQUARES
+function addSquares() {
+    for(let i = 0; i < (size * size); i++) {
+        const div = document.createElement('div');
+        container.appendChild(div);
+    }
+}
+
+addSquares()
