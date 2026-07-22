@@ -10,9 +10,6 @@ let mode = localStorage.getItem('mode') || '';
 let size = 2;
 let diff = 23;
 let max = 500;
-let  color;
-let diffColor;
-let winSquare;
 let count = 0;
 let newLevel = 15;
 
@@ -54,31 +51,38 @@ function addColor() {
     const con = document.querySelectorAll('.square');
 
     // GET RANDOM SQUARE
-    winSquare = con[Math.floor(Math.random()  * (size * size))];
+    const winSquare = con[Math.floor(Math.random()  * (size * size))];
 
     // CREATE MAIN COLOR
     const r = Math.floor(Math.random() * 256);
     const g = Math.floor(Math.random() * 256);
     const b = Math.floor(Math.random() * 256);
 
-    color = `${r}, ${g}, ${b}`;
+    const color = `${r}, ${g}, ${b}`;
 
     // CREATE DIFFERENT COLOR
     const dr = Math.min(r + diff, 255);
     const dg = Math.min(g + diff, 255);
     const db = Math.min(b + diff, 255);
 
-    diffColor = `${dr}, ${dg}, ${db}`;
+    const diffColor = `${dr}, ${dg}, ${db}`;
 
     // ADD MAIN COLOR TO ALL SQUARES
     con.forEach(box => {
         box.style.background = `rgb(${color})`;
+
+        // THE WRONG SQUARE FUNCTION
+        if(box !== winSquare) {
+            box.addEventListener('click', () => {
+                container.innerHTML = ''
+            })
+        }
     });
 
     // ADD DIFFERENT COLOR TO WIN SQUARE
     winSquare.style.background = `rgb(${diffColor})`;
 
-    // ONCLICK FUNCTION
+    // THE RIGHT SQUARE FUNCTION
     winSquare.addEventListener('click', () => {
         // EDIT COUNTER
         count++
