@@ -166,6 +166,7 @@ function lose() {
     count = 0;
     size = 2;
     diff = 23;
+    newLevel = 15;
 
     high.textContent = getHighScore()
     sound(endSound)
