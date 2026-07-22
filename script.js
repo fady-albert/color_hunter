@@ -8,12 +8,13 @@ const counter = document.getElementById('counter');
 // DEFINE JS VARIABLES
 let mode = localStorage.getItem('mode') || '';
 let size = 2;
-let diff = 20;
+let diff = 23;
 let max = 500;
 let  color;
 let diffColor;
 let winSquare;
 let count = 0;
+let newLevel = 15;
 
 // CHANGE MODE BETWEEN LIGHT AND DARK
 function darkMode() {
@@ -87,11 +88,27 @@ function addColor() {
         addSquares()
         addColor()
     })
+
+    if(size < 20) {
+        if(count >= newLevel) {
+            levels()
+        }
+    } else {
+        size = 20;
+        diff = 5;
+    }
 }
 
 // SHOW COUNTER
 function countTrue() {
     counter.textContent = count;
+}
+
+// GAME LEVEL
+function levels() {
+    size++;
+    diff--;
+    newLevel = newLevel + 15;
 }
 
 // RUN THER MAIN FUNCTIONS
