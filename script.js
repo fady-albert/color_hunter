@@ -6,7 +6,8 @@ const container = document.getElementById('main-con');
 
 // DEFINE JS VARIABLES
 let mode = localStorage.getItem('mode') || '';
-let size = 3;
+let size = 2;
+let max = 500;
 
 // CHANGE MODE BETWEEN LIGHT AND DARK
 function darkMode() {
@@ -31,7 +32,11 @@ if(mode === 'dark') {
 function addSquares() {
     for(let i = 0; i < (size * size); i++) {
         const div = document.createElement('div');
+        div.style.width = max/size + 'px';
+        div.style.height = max/size + 'px';
+        div.classList = 'square'
         container.appendChild(div);
+        container.style.gridTemplateColumns = `repeat(${size}, auto)`
     }
 }
 
