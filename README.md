@@ -21,7 +21,7 @@ Play and challenge your self
 ## 🚀 Getting started
 1. Clone the repository
 ```bash
-https://github.com/fady-albert/color_hunter.git
+git clone https://github.com/fady-albert/color_hunter.git
 ```
 2. Navigate to the project folder
 ```bash
