@@ -42,3 +42,6 @@ color_hunter/
 ## Theme
 
 play and have fun challenge your friends with your highScore
+
+## demo link
+https://fady-albert.github.io/color_hunter/
