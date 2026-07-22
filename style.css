@@ -92,5 +92,26 @@ button#mode:active{
     background: var(--black);
     border-radius: 10px;
     box-shadow: 0px 0px 5px var(--black);
+    transition: all 1s linear;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+body.dark .counter{
+    background: var(--white);
+    box-shadow: 0px 0px 5px var(--white);
+}
+
+.counter p{
+    font-size: 25px;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: var(--white);
+    padding: 0 10px;
+    transition: all 1s linear;
+}
+
+body.dark .counter p{
+    color: var(--black);
 }

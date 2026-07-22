@@ -83,7 +83,7 @@ function addColor() {
         count++
         countTrue()
 
-        // REPLACE THE SQUARES
+        // REPLACE THE SQUARES and create new color
         addSquares()
         addColor()
     })
@@ -97,3 +97,4 @@ function countTrue() {
 // RUN THER MAIN FUNCTIONS
 addSquares()
 addColor()
+countTrue()
